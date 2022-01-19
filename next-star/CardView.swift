@@ -15,11 +15,13 @@ struct CardView: View {
                  destination: URL(string: bookmark.url)!)
                 .padding(.top, 4)
             Spacer()
-            Text(bookmark.tags.joined(separator: ", "))
-                .foregroundColor(.blue)
-                .padding(4)
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 0.5))
-                .frame(maxWidth: .infinity, alignment: .trailing)
+            HStack {
+                ForEach(bookmark.tags, id: \.self) { tag in
+                    Text(tag).foregroundColor(.blue)
+                        .padding(4)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 0.5))
+                }
+            }.frame(maxWidth: .infinity, alignment: .trailing)
 
             Spacer()
         }
