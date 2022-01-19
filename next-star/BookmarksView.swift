@@ -11,8 +11,9 @@ struct BookmarksView: View {
     @State var bookmarks = [Bookmark]()
     
     var body: some View {
+        let viewTitle = "Bookmarks"
+        
         VStack {
-            Text("Bookmarks").font(.title)
             List {
                 ForEach(bookmarks) { bookmark in
                     CardView(bookmark: bookmark)
@@ -21,7 +22,7 @@ struct BookmarksView: View {
                 loadCacheIfAvailable()
                 getBookmarksData()
             }
-        }
+        }.navigationTitle(viewTitle)
     }
 }
 

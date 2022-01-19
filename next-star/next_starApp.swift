@@ -11,7 +11,9 @@ import SwiftUI
 struct next_starApp: App {
     var body: some Scene {
         WindowGroup {
-            BookmarksView(bookmarks: [])
+            NavigationView {
+                BookmarksView(bookmarks: [])
+            }
         }
     }
 }
