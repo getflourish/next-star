@@ -22,7 +22,16 @@ struct BookmarksView: View {
                 loadCacheIfAvailable()
                 getBookmarksData()
             }
-        }.navigationTitle(viewTitle)
+        }
+        .navigationTitle(viewTitle)
+        .toolbar {
+            NavigationLink(destination: NewBookmarkView()) {
+                Button(action: {}) {
+                    Image(systemName: "plus")
+                }
+                .accessibilityLabel("New bookmark")
+            }
+        }
     }
 }
 
