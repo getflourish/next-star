@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CardView: View {
     @Binding var bookmark: Bookmark
-    @State var isLinkActive = false
 
     
     var body: some View {
