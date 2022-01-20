@@ -15,8 +15,8 @@ struct BookmarksView: View {
         
         VStack {
             List {
-                ForEach(bookmarks) { bookmark in
-                    CardView(bookmark: bookmark)
+                ForEach($bookmarks) { $bookmark in
+                    CardView(bookmark: $bookmark)
                 }
             }.onAppear(){
                 loadCacheIfAvailable()
