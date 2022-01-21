@@ -31,7 +31,7 @@ struct UserCredentialsView: View {
             ).disableAutocorrection(true)
                 .autocapitalization(UITextAutocapitalizationType.none)
             
-            Text("Nextcloud instance host").font(.title3)
+            Text("Nextcloud instance URL").font(.title3)
             TextField("https://my.nextcloud.instance",
                      text: $nextcloudInstanceURL
            ).disableAutocorrection(true)
