@@ -21,7 +21,9 @@ struct BookmarksView: View {
                     CardView(bookmark: $bookmark, network: $network)
                 }
             }.onAppear(){
-                refreshBookmarks()
+                if bookmarks.isEmpty {
+                    refreshBookmarks()
+                }
             }
         }
         .navigationTitle(viewTitle)
