@@ -19,7 +19,7 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            if hasCredentials(defaultValue: hasCredentialsFromDefaults, runtimeValue: hasCredentialsRuntime) {
+            if hasCredentials(persistedValue: hasCredentialsFromDefaults, runtimeValue: hasCredentialsRuntime) {
                 NavigationView {
                     BookmarksView(bookmarks: $bookmarks, network: $network, refreshBookmarks: $refreshBookmarks)
                 }
@@ -44,8 +44,8 @@ struct MainView_Previews: PreviewProvider {
 }
 
 extension MainView {
-    func hasCredentials(defaultValue: Bool, runtimeValue: Bool) -> Bool {
-        return defaultValue || runtimeValue
+    func hasCredentials(persistedValue: Bool, runtimeValue: Bool) -> Bool {
+        return persistedValue || runtimeValue
     }
     
     func fetchBookmarksData() {
