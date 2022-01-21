@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     @Binding var bookmark: Bookmark
-
+    @Binding var network: Network
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -23,7 +23,7 @@ struct CardView: View {
                 .padding(.top, 4)
             Spacer()
             HStack {
-                NavigationLink(destination: EditBookmarkTagsView(bookmark: $bookmark)) {
+                NavigationLink(destination: EditBookmarkTagsView(bookmark: $bookmark, network: $network)) {
                     Button(action: {}) {
                         Text("Edit tags")
                     }   
@@ -43,7 +43,7 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var bookmark = Bookmark.sampleData[0]
     static var previews: some View {
-        CardView(bookmark: .constant(bookmark))
+        CardView(bookmark: .constant(bookmark), network: .constant(Network()))
             .previewLayout(.fixed(width: 400, height: 60))
     }
 }

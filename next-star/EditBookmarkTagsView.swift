@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditBookmarkTagsView: View {
     @Binding var bookmark: Bookmark
+    @Binding var network: Network
     @State private var newTag: String = ""
     var viewTitle = "Edit tags"
     
@@ -29,6 +30,7 @@ struct EditBookmarkTagsView: View {
                     "Enter the new tag here",
                     text: $newTag
                 ).disableAutocorrection(true)
+                    .autocapitalization(UITextAutocapitalizationType.none)
                 Button("Add tag", action: {
                     if (!self.bookmark.tags.contains(newTag)) {
                         print(newTag)
@@ -48,13 +50,13 @@ struct EditBookmarkTagsView: View {
 
 struct EditBookmarkTagsView_Previews: PreviewProvider {
     static var previews: some View {
-        EditBookmarkTagsView(bookmark: .constant(Bookmark.sampleData[0]))
+        EditBookmarkTagsView(bookmark: .constant(Bookmark.sampleData[0]), network: .constant(Network()))
     }
 }
 
 extension EditBookmarkTagsView {
     func updateTagsForBookmark(tags: [String], bookmarkId: Int) {
-        Network().updateTagsForBookmark(tags: tags, bookmarkId: bookmarkId) { (result) in
+        network.updateTagsForBookmark(tags: tags, bookmarkId: bookmarkId) { (result) in
             switch result {
             case.success(_):
                 break

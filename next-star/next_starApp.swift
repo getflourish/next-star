@@ -11,7 +11,7 @@ import SwiftUI
 struct next_starApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(bookmarks: [], refreshBookmarks: {})
         }
     }
 }

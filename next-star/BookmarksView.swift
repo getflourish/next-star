@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct BookmarksView: View {
-    @State var bookmarks = [Bookmark]()
+    @Binding var bookmarks: [Bookmark]
+    @Binding var network: Network
+    @Binding var refreshBookmarks: () -> ()
     
     var body: some View {
         let viewTitle = "Bookmarks"
@@ -16,11 +18,10 @@ struct BookmarksView: View {
         VStack {
             List {
                 ForEach($bookmarks) { $bookmark in
-                    CardView(bookmark: $bookmark)
+                    CardView(bookmark: $bookmark, network: $network)
                 }
             }.onAppear(){
-                loadCacheIfAvailable()
-                getBookmarksData()
+                refreshBookmarks()
             }
         }
         .navigationTitle(viewTitle)
@@ -37,39 +38,10 @@ struct BookmarksView: View {
 
 struct BookmarksView_Previews: PreviewProvider {
     static var previews: some View {
-        BookmarksView(bookmarks: [])
+        BookmarksView(bookmarks: .constant([Bookmark.sampleData[0]]), network: .constant(Network()), refreshBookmarks: .constant({}))
     }
 }
 
 extension BookmarksView {
-    func getBookmarksData() {
-        Network().getBookmarks { (result) in
-            switch result {
-            case.success(let bookmarks):
-                DispatchQueue.main.async {
-                    self.bookmarks = bookmarks
-                    storeBookmarksToCache(bookmarks: bookmarks)
-                }
-            case.failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    func loadCacheIfAvailable() {
-        do {
-            let bookmarks: [Bookmark] = try Storage().loadCachedBookmarks()
-            self.bookmarks = bookmarks
-        }
-        catch {
-            print("uninitialized cache")
-        }
-    }
-    func storeBookmarksToCache(bookmarks: [Bookmark]) {
-        do {
-            try Storage().storeBookmarksToCache(bookmarks: bookmarks)
-        }
-        catch {
-            print("Error storing bookmarks to file")
-        }
-    }
+    
 }
