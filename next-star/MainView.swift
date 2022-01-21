@@ -9,19 +9,19 @@ import SwiftUI
 
 struct MainView: View {
     @State var hasCredentials = UserDefaults.standard.bool(forKey: "hasCredentials")
-    @State var hasCredentialsDrilled = false
+    @State var hasCredentialsRuntime = false
     @State var network = Network(username: "", password: "", serverURL: UserDefaults.standard.string(forKey: "nextcloudInstanceURL") ?? "")
     @State var bookmarks: [Bookmark]
     @State var refreshBookmarks: () -> ()
     
     var body: some View {
         VStack {
-            if hasCredentials || hasCredentialsDrilled {
+            if hasCredentials || hasCredentialsRuntime {
                 NavigationView {
                     BookmarksView(bookmarks: $bookmarks, network: $network, refreshBookmarks: $refreshBookmarks)
                 }
             } else {
-                UserCredentialsView(network: $network, hasCredentials: $hasCredentialsDrilled)
+                UserCredentialsView(network: $network, hasCredentials: $hasCredentialsRuntime)
             }
         }.onAppear() {
             self.refreshBookmarks = extRefreshBookmarks
