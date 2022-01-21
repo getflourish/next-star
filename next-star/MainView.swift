@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var hasCredentials = UserDefaults.standard.bool(forKey: "hasCredentials")
-    @State var hasCredentialsRuntime = false
+    // UIState
+    @State var hasCredentialsFromDefaults = UserDefaults.standard.bool(forKey: "hasCredentials")
+    @State var hasCredentialsRuntime = false // Needed to re-render the view
+    
+    // (Dependency) Injected properties
     @State var network = Network(username: "", password: "", serverURL: UserDefaults.standard.string(forKey: "nextcloudInstanceURL") ?? "")
     @State var bookmarks: [Bookmark]
     @State var refreshBookmarks: () -> ()
     
     var body: some View {
         VStack {
-            if hasCredentials || hasCredentialsRuntime {
+            if hasCredentials(defaultValue: hasCredentialsFromDefaults, runtimeValue: hasCredentialsRuntime) {
                 NavigationView {
                     BookmarksView(bookmarks: $bookmarks, network: $network, refreshBookmarks: $refreshBookmarks)
                 }
@@ -24,11 +27,11 @@ struct MainView: View {
                 UserCredentialsView(network: $network, hasCredentials: $hasCredentialsRuntime)
             }
         }.onAppear() {
-            self.refreshBookmarks = extRefreshBookmarks
-            if hasCredentials {
+            self.refreshBookmarks = fetchBookmarksData
+            if hasCredentialsFromDefaults {
                 initializeNetworkFromCredentials()
                 loadCacheIfAvailable()
-                getBookmarksData()
+                fetchBookmarksData()
             }
         }
     }
@@ -41,10 +44,11 @@ struct MainView_Previews: PreviewProvider {
 }
 
 extension MainView {
-    func extRefreshBookmarks() {
-        getBookmarksData()
+    func hasCredentials(defaultValue: Bool, runtimeValue: Bool) -> Bool {
+        return defaultValue || runtimeValue
     }
-    func getBookmarksData() {
+    
+    func fetchBookmarksData() {
         print("fetching bookmarks at view level")
         network.getBookmarks { (result) in
             switch result {
