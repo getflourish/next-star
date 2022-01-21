@@ -36,7 +36,7 @@ struct UserCredentialsView: View {
                      text: $nextcloudInstanceURL
            ).disableAutocorrection(true)
                 .autocapitalization(UITextAutocapitalizationType.none)
-            Button("Save", action: {
+            Button("Save and login", action: {
 //                print(username)
 //                print(password)
 //                print(nextcloudInstanceURL)
