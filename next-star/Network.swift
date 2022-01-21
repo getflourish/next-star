@@ -8,8 +8,8 @@
 import Foundation
 
 class Network {
-    var authorizationToken = "myToken"
-    var nextcloudBookmarksHost = "https://your.nextcloud.instance"
+    var authorizationToken = ""
+    var nextcloudBookmarksUrl = ""
     
     init() {
         self.authorizationToken = ""
