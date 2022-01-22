@@ -37,9 +37,6 @@ struct UserCredentialsView: View {
            ).disableAutocorrection(true)
                 .autocapitalization(UITextAutocapitalizationType.none)
             Button("Save and login", action: {
-//                print(username)
-//                print(password)
-//                print(nextcloudInstanceURL)
                 let credentials = Credentials(username: username, password: password)
                 do {
                     try KeychainManager().setCredentials(credentials: credentials, server: nextcloudInstanceURL)

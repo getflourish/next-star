@@ -34,10 +34,6 @@ class Network {
     }
     
     func getBookmarks(completion: @escaping (Result<[Bookmark],Error>) -> Void) {
-        
-        print("fetching bookmarks using")
-        print(self.authorizationToken)
-        print(self.nextcloudBookmarksUrl)
         guard let url = URL(string: "\(self.nextcloudBookmarksUrl)/index.php/apps/bookmarks/public/rest/v2/bookmark?limit=50") else { print("Invalid URL!"); return
         }
         
