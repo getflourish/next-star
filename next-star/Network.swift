@@ -21,6 +21,13 @@ class Network {
         self.nextcloudBookmarksUrl = serverURL
     }
     
+    private func getAuthorizationTokenFromCredentials(username: String, password: String) -> String {
+        let loginString = String(format: "%@:%@", username, password)
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+        return base64LoginString
+    }
+    
     func updateCredentials(username: String, password: String, serverURL: String) {
         print("updating credentials in Network to")
         print(username)
@@ -28,13 +35,6 @@ class Network {
         print(serverURL)
         self.authorizationToken = getAuthorizationTokenFromCredentials(username: username, password: password)
         self.nextcloudBookmarksUrl = serverURL
-    }
-    
-    private func getAuthorizationTokenFromCredentials(username: String, password: String) -> String {
-        let loginString = String(format: "%@:%@", username, password)
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-        return base64LoginString
     }
     
     func getBookmarks(completion: @escaping (Result<[Bookmark],Error>) -> Void) {
@@ -56,8 +56,8 @@ class Network {
             }
             
             do {
-//                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-//                print(json)
+//              let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+//              print(json)
                 let bookmarkResponse = try JSONDecoder().decode(BookmarksResponse.self, from: data!)
                 completion(.success(bookmarkResponse.data))
             } catch let jsonError {
@@ -75,8 +75,8 @@ class Network {
         
         guard let url = URL(string: "\(self.nextcloudBookmarksUrl)/index.php/apps/bookmarks/public/rest/v2/bookmark/\(bookmarkId)") else { print("Invalid URL!"); return
         }
-        print(url)
-        print(params)
+//        print(url)
+//        print(params)
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -91,15 +91,13 @@ class Network {
             }
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String, AnyObject>
-//                                print(json)
+//              let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String, AnyObject>
+//              print(json)
                 completion(.success("yay"))
             } catch {
                 print(error)
                 completion(.failure(error.localizedDescription as! Error))
             }
-            
         }.resume()
-        
     }
 }
