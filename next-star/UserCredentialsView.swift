@@ -13,7 +13,7 @@ struct UserCredentialsView: View {
     
     @State private var username = ""
     @State private var password = ""
-    @State private var nextcloudInstanceURL = UserDefaults.standard.string(forKey: "nextcloudInstanceURL") ?? ""
+    @State private var nextcloudInstanceURL = UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL") ?? ""
     
     var body: some View {
         Text("User credentials").font(.title)
@@ -44,8 +44,8 @@ struct UserCredentialsView: View {
                 do {
                     try KeychainManager().setCredentials(credentials: credentials, server: nextcloudInstanceURL)
                     network.updateCredentials(username: username, password: password, serverURL: nextcloudInstanceURL)
-                    UserDefaults.standard.set(nextcloudInstanceURL, forKey: "nextcloudInstanceURL")
-                    UserDefaults.standard.set(true, forKey: "hasCredentials")
+                    UserDefaults(suiteName: "group.next-star-shared")!.set(nextcloudInstanceURL, forKey: "nextcloudInstanceURL")
+                    UserDefaults(suiteName: "group.next-star-shared")!.set(true, forKey: "hasCredentials")
                     hasCredentials = true
                 } catch {
                     print("error saving credentials to keychain")

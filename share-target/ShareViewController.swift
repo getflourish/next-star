@@ -23,7 +23,20 @@ class ShareViewController: SLComposeServiceViewController {
                 if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
                     itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil, completionHandler: { (url, error) -> Void in
                         if let shareURL = url as? NSURL {
-                            Network().createBookmark(url: shareURL.absoluteString!)
+                            
+                            let nextcloudInstanceUrl = UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL") ?? ""
+                            
+                            let hasCredentials = UserDefaults(suiteName: "group.next-star-shared")!.bool(forKey: "hasCredentials")
+                            
+                            if (hasCredentials && nextcloudInstanceUrl != "") {
+                                do {
+                                    let credentials = try KeychainManager().getCredentials(server: nextcloudInstanceUrl)
+                                    
+                                    Network(username: credentials.username, password: credentials.password, serverURL: nextcloudInstanceUrl).createBookmark(url: shareURL.absoluteString!)
+                                } catch {
+                                    print("error retrieving credentials in share extension")
+                                }
+                            }
                         }
                         self.extensionContext?.completeRequest(returningItems: [], completionHandler:nil)
                     })

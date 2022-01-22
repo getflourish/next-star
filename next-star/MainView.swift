@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MainView: View {
     // UIState
-    @State var hasCredentialsFromDefaults = UserDefaults.standard.bool(forKey: "hasCredentials")
+    @State var hasCredentialsFromDefaults = UserDefaults(suiteName: "group.next-star-shared")!.bool(forKey: "hasCredentials")
     @State var hasCredentialsRuntime = false // Needed to re-render the view
     
     // (Dependency) Injected properties
-    @State var network = Network(username: "", password: "", serverURL: UserDefaults.standard.string(forKey: "nextcloudInstanceURL") ?? "")
+    @State var network = Network(username: "", password: "", serverURL: UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL") ?? "")
     @State var bookmarks: [Bookmark]
     @State var refreshBookmarks: () -> ()
     
@@ -82,15 +82,15 @@ extension MainView {
         }
     }
     func initializeNetworkFromCredentials() {
-        if (UserDefaults.standard.bool(forKey: "hasCredentials")) {
+        if (UserDefaults(suiteName: "group.next-star-shared")!.bool(forKey: "hasCredentials")) {
             do {
                 print("initializing network from credentials for server")
-                print(UserDefaults.standard.string(forKey: "nextcloudInstanceURL"))
-                let credentials = try KeychainManager().getCredentials(server: UserDefaults.standard.string(forKey: "nextcloudInstanceURL") ?? "")
-                network.updateCredentials(username: credentials.username, password: credentials.password, serverURL: UserDefaults.standard.string(forKey: "nextcloudInstanceURL") ?? "")
+                print(UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL"))
+                let credentials = try KeychainManager().getCredentials(server: UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL") ?? "")
+                network.updateCredentials(username: credentials.username, password: credentials.password, serverURL: UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL") ?? "")
                 
             } catch {
-                print("error retrieving credentials for server: \(UserDefaults.standard.string(forKey: "nextcloudInstanceURL") ?? "")")
+                print("error retrieving credentials for server: \(UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL") ?? "")")
             }
         }
     }
