@@ -70,6 +70,29 @@ class Network {
         // TO-DO: Implement this
     }
     
+    func createBookmark(url: String) {
+        let params = ["url": url]
+
+        var request = URLRequest(url: URL(string: "\(nextcloudBookmarksUrl)/index.php/apps/bookmarks/public/rest/v2/bookmark")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Basic \(authorizationToken)=", forHTTPHeaderField: "Authorization")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            print(response!)
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+            } catch {
+                print("error")
+            }
+        })
+
+        task.resume()
+    }
+    
     func updateTagsForBookmark(tags: [String], bookmarkId: Int, completion: @escaping (Result<String,Error>) -> Void)  {
         let params = ["tags": tags]
         
