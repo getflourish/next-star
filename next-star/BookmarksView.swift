@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  next-star
-//
-//  Created by jay on 17.01.22.
-//
-
 import SwiftUI
 
 struct BookmarksView: View {

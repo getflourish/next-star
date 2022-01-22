@@ -1,10 +1,3 @@
-//
-//  EditBookmarkTagsView.swift
-//  next-star
-//
-//  Created by jay on 19.01.22.
-//
-
 import SwiftUI
 
 struct EditBookmarkTagsView: View {

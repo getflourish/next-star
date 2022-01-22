@@ -1,10 +1,3 @@
-//
-//  ShareViewController.swift
-//  share-target
-//
-//  Created by jay on 17.01.22.
-//
-
 import UIKit
 import Social
 

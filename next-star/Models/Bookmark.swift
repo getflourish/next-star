@@ -1,10 +1,3 @@
-//
-//  Bookmark.swift
-//  next-star
-//
-//  Created by jay on 17.01.22.
-//
-
 import Foundation
 
 struct Bookmark: Identifiable, Codable {
