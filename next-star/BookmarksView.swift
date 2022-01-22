@@ -20,21 +20,22 @@ struct BookmarksView: View {
                 ForEach($bookmarks) { $bookmark in
                     CardView(bookmark: $bookmark, network: $network)
                 }
-            }.onAppear(){
+            }
+            .onAppear(){
                 if bookmarks.isEmpty {
                     refreshBookmarks()
                 }
             }
         }
-        .navigationTitle(viewTitle)
-        .toolbar {
-            NavigationLink(destination: NewBookmarkView()) {
-                Button(action: {}) {
-                    Image(systemName: "plus")
+            .navigationTitle(viewTitle)
+            .toolbar {
+                NavigationLink(destination: NewBookmarkView()) {
+                    Button(action: {}) {
+                        Image(systemName: "plus")
+                    }
+                    .accessibilityLabel("New bookmark")
                 }
-                .accessibilityLabel("New bookmark")
             }
-        }
     }
 }
 
@@ -42,8 +43,4 @@ struct BookmarksView_Previews: PreviewProvider {
     static var previews: some View {
         BookmarksView(bookmarks: .constant([Bookmark.sampleData[0]]), network: .constant(Network()), refreshBookmarks: .constant({}))
     }
-}
-
-extension BookmarksView {
-    
 }
