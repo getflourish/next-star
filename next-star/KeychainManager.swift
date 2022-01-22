@@ -41,9 +41,6 @@ class KeychainManager {
         
         let account = credentials.username
         let password = credentials.password.data(using: String.Encoding.utf8)!
-        print("Setting credentials to")
-        print(account)
-        print(password)
    
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrAccount as String: account,
@@ -60,7 +57,6 @@ class KeychainManager {
     func hasCredentials(server: String) -> Bool {
         do {
             try getCredentials(server: server)
-            print("has credentials for \(server)")
             return true
         }
         catch {

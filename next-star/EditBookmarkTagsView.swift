@@ -33,12 +33,9 @@ struct EditBookmarkTagsView: View {
                     .autocapitalization(UITextAutocapitalizationType.none)
                 Button("Add tag", action: {
                     if (!self.bookmark.tags.contains(newTag)) {
-                        print(newTag)
                         var newTags = self.bookmark.tags
-                        print(newTags)
                         newTags.append(newTag)
                         self.bookmark.tags = newTags
-                        print(self.bookmark.tags)
 
                         updateTagsForBookmark(tags: newTags, bookmarkId: bookmark.id)
                     }

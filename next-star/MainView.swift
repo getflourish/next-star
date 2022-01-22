@@ -49,17 +49,14 @@ extension MainView {
     }
     
     func fetchBookmarksData() {
-        print("fetching bookmarks at view level")
         network.getBookmarks { (result) in
             switch result {
             case.success(let bookmarks):
-                print("success fetching bookmarks at view level")
                 DispatchQueue.main.async {
                     self.bookmarks = bookmarks
                     storeBookmarksToCache(bookmarks: bookmarks)
                 }
             case.failure(let error):
-                print("failure fetching bookmarks at view level")
                 print(error.localizedDescription)
             }
         }
@@ -84,8 +81,6 @@ extension MainView {
     func initializeNetworkFromCredentials() {
         if (UserDefaults(suiteName: "group.next-star-shared")!.bool(forKey: "hasCredentials")) {
             do {
-                print("initializing network from credentials for server")
-                print(UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL"))
                 let credentials = try KeychainManager().getCredentials(server: UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL") ?? "")
                 network.updateCredentials(username: credentials.username, password: credentials.password, serverURL: UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL") ?? "")
                 
