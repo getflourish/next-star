@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69175BDE279DAC21007B5475 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69175BDD279DAC21007B5475 /* SettingsView.swift */; };
 		692093EE279C0BD600238721 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD3A82799FD2F00CEFE98 /* KeychainManager.swift */; };
 		692093EF279C0BE900238721 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD3AA2799FDBD00CEFE98 /* Credentials.swift */; };
 		692093F0279C0BF700238721 /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD3AC2799FE2000CEFE98 /* KeychainError.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		69175BDD279DAC21007B5475 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		693AD3A82799FD2F00CEFE98 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		693AD3AA2799FDBD00CEFE98 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		693AD3AC2799FE2000CEFE98 /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				69DCA8192795DC2100785E53 /* Models */,
 				69DCA7DC2795D79900785E53 /* next_starApp.swift */,
 				69DCA7DE2795D79900785E53 /* BookmarksView.swift */,
+				69175BDD279DAC21007B5475 /* SettingsView.swift */,
 				696557CA2799C8FA000D5651 /* MainView.swift */,
 				696557CC2799CA39000D5651 /* UserCredentialsView.swift */,
 				69DCA81E2795DE8000785E53 /* CardView.swift */,
@@ -377,6 +380,7 @@
 				696557CB2799C8FA000D5651 /* MainView.swift in Sources */,
 				69DCA7DD2795D79900785E53 /* next_starApp.swift in Sources */,
 				696557C72797F74C000D5651 /* NewBookmarkView.swift in Sources */,
+				69175BDE279DAC21007B5475 /* SettingsView.swift in Sources */,
 				693AD3AD2799FE2000CEFE98 /* KeychainError.swift in Sources */,
 				693AD3A92799FD2F00CEFE98 /* KeychainManager.swift in Sources */,
 				69DCA81D2795DCE800785E53 /* Bookmark.swift in Sources */,

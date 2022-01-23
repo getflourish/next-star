@@ -22,11 +22,17 @@ struct BookmarksView: View {
         }
             .navigationTitle(viewTitle)
             .toolbar {
-                NavigationLink(destination: NewBookmarkView()) {
-                    Button(action: {}) {
-                        Image(systemName: "plus")
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gear")
+                        .accessibilityLabel("Settings")
                     }
-                    .accessibilityLabel("New bookmark")
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: NewBookmarkView()) {
+                        Image(systemName: "plus")
+                        .accessibilityLabel("New bookmark")
+                    }
                 }
             }
     }
