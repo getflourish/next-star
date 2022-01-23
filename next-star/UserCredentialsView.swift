@@ -30,30 +30,47 @@ struct UserCredentialsView: View {
                      text: $nextcloudInstanceURL
            ).disableAutocorrection(true)
                 .autocapitalization(UITextAutocapitalizationType.none)
+            
             Button("Save and login", action: {
-                let credentials = Credentials(username: username, password: password)
-                do {
-                
-                    try KeychainManager().setCredentials(credentials: credentials, server: nextcloudInstanceURL)
-                    network.updateCredentials(username: username, password: password, serverURL: nextcloudInstanceURL)
-                    UserDefaults(suiteName: Constants().GROUP_ID)!.set(nextcloudInstanceURL, forKey: "nextcloudInstanceURL")
-                    UserDefaults(suiteName: Constants().GROUP_ID)!.set(true, forKey: "hasCredentials")
-                    hasCredentials = true
-                    displayNotification("Success setting credentials!", false)
-                } catch {
-                    displayNotification("error saving credentials to keychain", true)
-                    print("error saving credentials to keychain")
-                    print(error)
-                }
-                
+                saveCredentials()
             })
-        }
-        
-    }
+       }
+   }
 }
 
 struct UserCredentialsView_Previews: PreviewProvider {
     static var previews: some View {
         UserCredentialsView(network: .constant(Network()), hasCredentials: .constant(false), displayNotification: .constant({_,_ in }))
+    }
+}
+
+extension UserCredentialsView {
+    func saveCredentials() {
+        let credentials = Credentials(username: username, password: password)
+        network.updateCredentials(username: username, password: password, serverURL: nextcloudInstanceURL)
+        
+        // Verify credentials
+        network.getTags { (result) in
+            switch result {
+            case.success(_):
+                    displayNotification("Success verifying credentials!", false)
+                    // Store credentials
+                    do {
+                        try KeychainManager().setCredentials(credentials: credentials, server: nextcloudInstanceURL)
+                        UserDefaults(suiteName: Constants().GROUP_ID)!.set(nextcloudInstanceURL, forKey: "nextcloudInstanceURL")
+                        UserDefaults(suiteName: Constants().GROUP_ID)!.set(true, forKey: "hasCredentials")
+                        // Update view
+                        hasCredentials = true
+                    }
+                    catch {
+                        displayNotification("error saving credentials to keychain", true)
+                        print("error saving credentials to keychain")
+                        print(error)
+                    }
+                case.failure(let error):
+                    displayNotification(error.localizedDescription, true)
+                    print(error.localizedDescription)
+            }
+        }
     }
 }

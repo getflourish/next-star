@@ -95,4 +95,28 @@ class Network {
             }
         }.resume()
     }
+    
+    func getTags(completion: @escaping (Result<[String],Error>) -> Void) {
+        guard let url = URL(string: "\(self.nextcloudBookmarksUrl)/index.php/apps/bookmarks/public/rest/v2/tag") else { print("Invalid URL!"); return
+        }
+        
+        print("fetching tags network log")
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(self.authorizationToken)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            do {
+                let tagResponse = try JSONDecoder().decode([String].self, from: data!)
+                completion(.success(tagResponse))
+            } catch let jsonError {
+                completion(.failure(jsonError))
+            }
+        }.resume()
+    }
 }
