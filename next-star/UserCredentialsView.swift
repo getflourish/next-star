@@ -3,6 +3,7 @@ import SwiftUI
 struct UserCredentialsView: View {
     @Binding var network: Network
     @Binding var hasCredentials: Bool
+    @Binding var displayNotification: (String, Bool) -> ()
     
     @State private var username = ""
     @State private var password = ""
@@ -32,12 +33,15 @@ struct UserCredentialsView: View {
             Button("Save and login", action: {
                 let credentials = Credentials(username: username, password: password)
                 do {
+                
                     try KeychainManager().setCredentials(credentials: credentials, server: nextcloudInstanceURL)
                     network.updateCredentials(username: username, password: password, serverURL: nextcloudInstanceURL)
                     UserDefaults(suiteName: Constants().GROUP_ID)!.set(nextcloudInstanceURL, forKey: "nextcloudInstanceURL")
                     UserDefaults(suiteName: Constants().GROUP_ID)!.set(true, forKey: "hasCredentials")
                     hasCredentials = true
+                    displayNotification("Success setting credentials!", false)
                 } catch {
+                    displayNotification("error saving credentials to keychain", true)
                     print("error saving credentials to keychain")
                     print(error)
                 }
@@ -50,6 +54,6 @@ struct UserCredentialsView: View {
 
 struct UserCredentialsView_Previews: PreviewProvider {
     static var previews: some View {
-        UserCredentialsView(network: .constant(Network()), hasCredentials: .constant(false))
+        UserCredentialsView(network: .constant(Network()), hasCredentials: .constant(false), displayNotification: .constant({_,_ in }))
     }
 }
