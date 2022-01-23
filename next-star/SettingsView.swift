@@ -1,10 +1,3 @@
-//
-//  SettingsView.swift
-//  next-star
-//
-//  Created by jay on 23.01.22.
-//
-
 import SwiftUI
 
 struct SettingsView: View {
