@@ -21,6 +21,8 @@
 		696557C927987C95000D5651 /* EditBookmarkTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696557C827987C95000D5651 /* EditBookmarkTagsView.swift */; };
 		696557CB2799C8FA000D5651 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696557CA2799C8FA000D5651 /* MainView.swift */; };
 		696557CD2799CA39000D5651 /* UserCredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696557CC2799CA39000D5651 /* UserCredentialsView.swift */; };
+		69990AB6279D55DC00FA5B6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69990AB5279D55DC00FA5B6D /* Constants.swift */; };
+		69990AB7279D55EA00FA5B6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69990AB5279D55DC00FA5B6D /* Constants.swift */; };
 		69DCA7DD2795D79900785E53 /* next_starApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DCA7DC2795D79900785E53 /* next_starApp.swift */; };
 		69DCA7DF2795D79900785E53 /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DCA7DE2795D79900785E53 /* BookmarksView.swift */; };
 		69DCA7E12795D79A00785E53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69DCA7E02795D79A00785E53 /* Assets.xcassets */; };
@@ -81,6 +83,7 @@
 		696557C827987C95000D5651 /* EditBookmarkTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBookmarkTagsView.swift; sourceTree = "<group>"; };
 		696557CA2799C8FA000D5651 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		696557CC2799CA39000D5651 /* UserCredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentialsView.swift; sourceTree = "<group>"; };
+		69990AB5279D55DC00FA5B6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		69CF1073279B41A40054BF5C /* next-star.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "next-star.entitlements"; sourceTree = "<group>"; };
 		69CF1074279B41E00054BF5C /* share-target.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "share-target.entitlements"; sourceTree = "<group>"; };
 		69DCA7D92795D79900785E53 /* next-star.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "next-star.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +202,7 @@
 				69DCA8222795E65100785E53 /* BookmarksResponse.swift */,
 				693AD3AA2799FDBD00CEFE98 /* Credentials.swift */,
 				693AD3AC2799FE2000CEFE98 /* KeychainError.swift */,
+				69990AB5279D55DC00FA5B6D /* Constants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +373,7 @@
 				69DCA7DF2795D79900785E53 /* BookmarksView.swift in Sources */,
 				69DCA8212795E36200785E53 /* Network.swift in Sources */,
 				693AD3AB2799FDBD00CEFE98 /* Credentials.swift in Sources */,
+				69990AB6279D55DC00FA5B6D /* Constants.swift in Sources */,
 				696557CB2799C8FA000D5651 /* MainView.swift in Sources */,
 				69DCA7DD2795D79900785E53 /* next_starApp.swift in Sources */,
 				696557C72797F74C000D5651 /* NewBookmarkView.swift in Sources */,
@@ -406,6 +411,7 @@
 				69DCA80D2795D81200785E53 /* ShareViewController.swift in Sources */,
 				692093F3279C0C8A00238721 /* BookmarksResponse.swift in Sources */,
 				692093F2279C0C7B00238721 /* Bookmark.swift in Sources */,
+				69990AB7279D55EA00FA5B6D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

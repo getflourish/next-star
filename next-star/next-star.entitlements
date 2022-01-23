@@ -4,11 +4,11 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.next-star-shared</string>
+		<string>group.TEAM_ID.com.jayk1d.next-star</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>jayk1d.next-star</string>
+		<string>$(AppIdentifierPrefix)jayk1d.next-star</string>
 	</array>
 </dict>
 </plist>

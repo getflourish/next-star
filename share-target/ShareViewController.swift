@@ -17,9 +17,9 @@ class ShareViewController: SLComposeServiceViewController {
                     itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil, completionHandler: { (url, error) -> Void in
                         if let shareURL = url as? NSURL {
                             
-                            let nextcloudInstanceUrl = UserDefaults(suiteName: "group.next-star-shared")!.string(forKey: "nextcloudInstanceURL") ?? ""
+                            let nextcloudInstanceUrl = UserDefaults(suiteName: Constants().GROUP_ID)!.string(forKey: "nextcloudInstanceURL") ?? ""
                             
-                            let hasCredentials = UserDefaults(suiteName: "group.next-star-shared")!.bool(forKey: "hasCredentials")
+                            let hasCredentials = UserDefaults(suiteName: Constants().GROUP_ID)!.bool(forKey: "hasCredentials")
                             
                             if (hasCredentials && nextcloudInstanceUrl != "") {
                                 do {

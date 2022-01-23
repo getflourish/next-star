@@ -1,14 +1,17 @@
 import Foundation
 
 class KeychainManager {
-    let accessGroup = "jayk1d.next-star"
+    
+    private func getAccessGroup() -> String {
+        return "\(Constants().TEAM_ID).\(Constants().PARTIAL_ACCESS_GROUP)"
+    }
     
     func getCredentials(server: String) throws -> Credentials {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrServer as String: server,
                                     kSecMatchLimit as String: kSecMatchLimitOne,
                                     kSecReturnAttributes as String: true,
-                                    kSecAttrAccessGroup as String: accessGroup,
+                                    kSecAttrAccessGroup as String: getAccessGroup(),
                                     kSecReturnData as String: true]
         
         var item: CFTypeRef?
@@ -38,7 +41,7 @@ class KeychainManager {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrAccount as String: account,
                                     kSecAttrServer as String: server,
-                                    kSecAttrAccessGroup as String: accessGroup,
+                                    kSecAttrAccessGroup as String: getAccessGroup(),
                                     kSecValueData as String: password]
 
         let status = SecItemAdd(query as CFDictionary, nil)
@@ -59,7 +62,7 @@ class KeychainManager {
     
     func deleteCredentials(server: String) throws {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrAccessGroup as String: accessGroup,
+                                    kSecAttrAccessGroup as String: getAccessGroup(),
                                     kSecAttrServer as String: server]
         let status = SecItemDelete(query as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else { throw KeychainError.unhandledError(status: status) }
