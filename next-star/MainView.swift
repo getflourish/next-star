@@ -5,22 +5,36 @@ struct MainView: View {
     @State var hasCredentialsFromDefaults = UserDefaults(suiteName: Constants().GROUP_ID)!.bool(forKey: "hasCredentials")
     @State var hasCredentialsRuntime = false // Needed to re-render the view
     
+    // Notification UI state
+    @State var notificationContents = ""
+    @State var notificationIsError = false
+    @State var notificationShouldDisplay = false
+    
     // (Dependency) Injected properties
     @State var network = Network(username: "", password: "", serverURL: UserDefaults(suiteName: Constants().GROUP_ID)!.string(forKey: "nextcloudInstanceURL") ?? "")
     @State var bookmarks: [Bookmark]
-    @State var refreshBookmarks: () -> ()
+    
+    // (Dependency) Injected actions
+    @State var refreshBookmarksAction: () -> ()
+    @State var displayNotificationAction: (String, Bool) -> ()
     
     var body: some View {
         VStack {
+            if (notificationShouldDisplay) {
+                NotificationView(content: $notificationContents, isError: $notificationIsError)
+            }
             if hasCredentials(persistedValue: hasCredentialsFromDefaults, runtimeValue: hasCredentialsRuntime) {
                 NavigationView {
-                    BookmarksView(bookmarks: $bookmarks, network: $network, refreshBookmarks: $refreshBookmarks)
+                    BookmarksView(bookmarks: $bookmarks, network: $network, refreshBookmarks: $refreshBookmarksAction)
                 }
             } else {
-                UserCredentialsView(network: $network, hasCredentials: $hasCredentialsRuntime)
+                UserCredentialsView(network: $network, hasCredentials: $hasCredentialsRuntime, displayNotification: $displayNotificationAction)
             }
         }.onAppear() {
-            self.refreshBookmarks = fetchBookmarksData
+            // Set functions to inject
+            self.refreshBookmarksAction = fetchBookmarksData
+            self.displayNotificationAction = displayNotification
+            
             if hasCredentialsFromDefaults {
                 initializeNetworkFromCredentials()
                 loadCacheIfAvailable()
@@ -32,7 +46,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(network: Network(), bookmarks: [], refreshBookmarks: {})
+        MainView(network: Network(), bookmarks: [], refreshBookmarksAction: {}, displayNotificationAction: {_, _ in })
     }
 }
 
@@ -40,7 +54,15 @@ extension MainView {
     func hasCredentials(persistedValue: Bool, runtimeValue: Bool) -> Bool {
         return persistedValue || runtimeValue
     }
-    
+    func displayNotification(content: String, isError: Bool) {
+        self.notificationContents = content
+        self.notificationShouldDisplay = true
+        self.notificationIsError = isError
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.notificationShouldDisplay = false
+        }
+    }
     func fetchBookmarksData() {
         network.getBookmarks { (result) in
             switch result {
