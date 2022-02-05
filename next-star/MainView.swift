@@ -15,7 +15,7 @@ struct MainView: View {
     @State var bookmarks: [Bookmark]
     
     // (Dependency) Injected actions
-    @State var refreshBookmarksAction: () -> ()
+    @State var refreshBookmarksAction: () async -> ()
     @State var displayNotificationAction: (String, Bool) -> ()
     
     var body: some View {
@@ -24,22 +24,24 @@ struct MainView: View {
                 NotificationView(content: $notificationContents, isError: $notificationIsError)
             }
             if hasCredentials(persistedValue: hasCredentialsFromDefaults, runtimeValue: hasCredentialsRuntime) {
-                NavigationView {
-                    BookmarksView(bookmarks: $bookmarks, network: $network, refreshBookmarks: $refreshBookmarksAction)
-                }
+                
+                    BookmarksView(bookmarks: bookmarks, network: $network, refreshBookmarks: $refreshBookmarksAction)
+                
             } else {
                 UserCredentialsView(network: $network, hasCredentials: $hasCredentialsRuntime, displayNotification: $displayNotificationAction)
             }
-        }.onAppear() {
+        }.task  {
+          
             // Set functions to inject
-            self.refreshBookmarksAction = fetchBookmarksData
+            self.refreshBookmarksAction =  fetchBookmarksData
             self.displayNotificationAction = displayNotification
             
             if hasCredentialsFromDefaults {
                 initializeNetworkFromCredentials()
                 loadCacheIfAvailable()
-                fetchBookmarksData()
+                await fetchBookmarksData()
             }
+          
         }
     }
 }
@@ -63,8 +65,8 @@ extension MainView {
             self.notificationShouldDisplay = false
         }
     }
-    func fetchBookmarksData() {
-        network.getBookmarks { (result) in
+    func fetchBookmarksData() async {
+        await network.getBookmarks { (result) in
             switch result {
             case.success(let bookmarks):
                 DispatchQueue.main.async {

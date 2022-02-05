@@ -1,7 +1,7 @@
 import Foundation
 
 struct Constants {
-    let GROUP_ID = "group.TEAM_ID.com.jayk1d.next-star"
-    let TEAM_ID = "TEAM_ID"
-    let PARTIAL_ACCESS_GROUP = "jayk1d.next-star"
+    let GROUP_ID = "group.8D3DN2U92D.ch.digitalstation.next-star"
+    let TEAM_ID = "8D3DN2U92D"
+    let PARTIAL_ACCESS_GROUP = "digitalstation.next-star"
 }

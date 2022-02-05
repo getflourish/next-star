@@ -162,22 +162,22 @@
 		69DCA7DB2795D79900785E53 /* next-star */ = {
 			isa = PBXGroup;
 			children = (
-				69CF1073279B41A40054BF5C /* next-star.entitlements */,
-				69DCA8192795DC2100785E53 /* Models */,
-				69DCA7DC2795D79900785E53 /* next_starApp.swift */,
-				69DCA7DE2795D79900785E53 /* BookmarksView.swift */,
-				69175BDD279DAC21007B5475 /* SettingsView.swift */,
-				696557CA2799C8FA000D5651 /* MainView.swift */,
-				69175BE1279DC2C3007B5475 /* NotificationView.swift */,
-				696557CC2799CA39000D5651 /* UserCredentialsView.swift */,
-				69DCA81E2795DE8000785E53 /* CardView.swift */,
 				69DCA7E02795D79A00785E53 /* Assets.xcassets */,
-				69DCA7E22795D79A00785E53 /* Preview Content */,
-				69DCA8202795E36200785E53 /* Network.swift */,
-				6943680127973DA50095508B /* Storage.swift */,
-				696557C62797F74C000D5651 /* NewBookmarkView.swift */,
+				69DCA7DE2795D79900785E53 /* BookmarksView.swift */,
+				69DCA81E2795DE8000785E53 /* CardView.swift */,
 				696557C827987C95000D5651 /* EditBookmarkTagsView.swift */,
 				693AD3A82799FD2F00CEFE98 /* KeychainManager.swift */,
+				696557CA2799C8FA000D5651 /* MainView.swift */,
+				69DCA8192795DC2100785E53 /* Models */,
+				69DCA8202795E36200785E53 /* Network.swift */,
+				696557C62797F74C000D5651 /* NewBookmarkView.swift */,
+				69DCA7DC2795D79900785E53 /* next_starApp.swift */,
+				69CF1073279B41A40054BF5C /* next-star.entitlements */,
+				69175BE1279DC2C3007B5475 /* NotificationView.swift */,
+				69DCA7E22795D79A00785E53 /* Preview Content */,
+				69175BDD279DAC21007B5475 /* SettingsView.swift */,
+				6943680127973DA50095508B /* Storage.swift */,
+				696557CC2799CA39000D5651 /* UserCredentialsView.swift */,
 			);
 			path = "next-star";
 			sourceTree = "<group>";
@@ -581,7 +581,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"next-star/Preview Content\"";
-				DEVELOPMENT_TEAM = ZWBJ3L8UN4;
+				DEVELOPMENT_TEAM = 8D3DN2U92D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -589,13 +589,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jayk1d.next-star";
+				PRODUCT_BUNDLE_IDENTIFIER = "digitalstation.next-star";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -613,7 +613,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"next-star/Preview Content\"";
-				DEVELOPMENT_TEAM = ZWBJ3L8UN4;
+				DEVELOPMENT_TEAM = 8D3DN2U92D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -621,13 +621,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jayk1d.next-star";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.digitalstation.next-star";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -717,7 +717,7 @@
 				CODE_SIGN_ENTITLEMENTS = "share-target/share-target.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZWBJ3L8UN4;
+				DEVELOPMENT_TEAM = 8D3DN2U92D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "share-target/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "share-target";
@@ -729,7 +729,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jayk1d.next-star.share-target";
+				PRODUCT_BUNDLE_IDENTIFIER = "digitalstation.next-star.share-target";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -744,7 +744,7 @@
 				CODE_SIGN_ENTITLEMENTS = "share-target/share-target.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZWBJ3L8UN4;
+				DEVELOPMENT_TEAM = 8D3DN2U92D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "share-target/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "share-target";
@@ -756,7 +756,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jayk1d.next-star.share-target";
+				PRODUCT_BUNDLE_IDENTIFIER = "digitalstation.next-star.share-target";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

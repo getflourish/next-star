@@ -7,35 +7,53 @@ struct UserCredentialsView: View {
     
     @State private var username = ""
     @State private var password = ""
-    @State private var nextcloudInstanceURL = UserDefaults(suiteName: Constants().GROUP_ID)!.string(forKey: "nextcloudInstanceURL") ?? ""
+    @State private var nextcloudInstanceURL = ""
     
     var body: some View {
-        Text("User credentials").font(.title)
+      NavigationView {
+        
         
         Form {
-            Text("Username").font(.title3)
-            TextField("Enter your username",
-                      text: $username
-            ).disableAutocorrection(true)
-                .autocapitalization(UITextAutocapitalizationType.none)
-            
-            Text("Password").font(.title3)
-            TextField("Enter your password",
-                      text: $password
-            ).disableAutocorrection(true)
-                .autocapitalization(UITextAutocapitalizationType.none)
-            
-            Text("Nextcloud instance URL").font(.title3)
+          
+          Section(header: Text("Nextcloud instance URL"))  {
             TextField("https://my.nextcloud.instance",
                      text: $nextcloudInstanceURL
            ).disableAutocorrection(true)
                 .autocapitalization(UITextAutocapitalizationType.none)
+          }
+        
+          Section(header: Text("Username"))  {
             
-            Button("Save and login", action: {
-                saveCredentials()
-            })
+            TextField("Enter your username",
+                      text: $username
+            ).disableAutocorrection(true)
+                .autocapitalization(UITextAutocapitalizationType.none)
+          }
+          
+          Section(header: Text("Password"))  {
+            
+            SecureField("Enter your password",
+                      text: $password
+            ).disableAutocorrection(true)
+              .autocapitalization(UITextAutocapitalizationType.none)
+          }
+          
+          Section {
+            Button(action: saveCredentials) {
+              Text("Continue").multilineTextAlignment(.center)
+          }
+          }
+          
+
+            
        }
-   }
+        .navigationTitle("Connect")
+        
+          
+   
+      }
+        
+    }
 }
 
 struct UserCredentialsView_Previews: PreviewProvider {
