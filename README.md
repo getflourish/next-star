@@ -8,4 +8,5 @@ If you're looking for a more feature-complete and robust project, check the offi
 
 This is part of my efforts to maintain as many of the data points that I generate on my self-hosted services and generally be in control of my data. It's likely that a blogpost on [my blog](https://jay.cat) will follow explaining how to set up stuff in order to be able to host your own instance and run the app on your iOS device.
 
-![Simulator Screen Shot - iPhone 12 - 2022-02-05 at 16 03 06](https://user-images.githubusercontent.com/183989/152647221-6ea5ff4b-7de6-4382-babd-87873b7cc32d.png)
+
+<img width="529" alt="Bildschirmfoto 2022-02-05 um 16 03 32" src="https://user-images.githubusercontent.com/183989/152647237-1a6411c3-2afe-4414-8d6d-fe90773fb0d5.png">
